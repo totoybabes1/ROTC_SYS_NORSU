@@ -74,16 +74,13 @@ TEMPLATES = [
 WSGI_APPLICATION = 'myproject.wsgi.application'
 
 
+
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',  # Use MySQL as the database backend
-        'NAME': 'ROTCversion2',                # Name of your MySQL database
-        'USER': 'root',        # MySQL username (default is often 'root')
-        'PASSWORD': '',    # MySQL password (leave empty if no password)
-        'HOST': 'localhost',                  # MySQL host (use 'localhost' if running locally)
-        'PORT': '3306',                       # MySQL port (default is 3306)
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
