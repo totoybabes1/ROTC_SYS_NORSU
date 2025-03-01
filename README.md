@@ -62,12 +62,12 @@ django-admin --version
 ### 4. Create a Django Project
 Run the following command to create your Django project:
 ```sh
-django-admin startproject rotc_management
+django-admin startproject myproject . 
 ```
 
 Navigate to the project directory:
 ```sh
-cd rotc_management
+cd myproject
 ```
 
 ### 5. Run the Development Server
@@ -81,7 +81,7 @@ You should see output indicating that the development server is running. Open yo
 ### 6. Create a Django App
 Inside your Django project, create an app for managing ROTC records:
 ```sh
-python manage.py startapp management
+python manage.py startapp myapp
 ```
 
 Add the app to `INSTALLED_APPS` in `rotc_management/settings.py`:
