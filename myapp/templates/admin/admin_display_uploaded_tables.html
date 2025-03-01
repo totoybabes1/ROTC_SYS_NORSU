@@ -1,0 +1,155 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+{% block title %}Uploaded Tables{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/admin_display_uploaded_tables.css' %}">
+    <div class="container-fluid px-4 py-4">
+
+        <!-- Header Section -->
+        <div class="mb-4 header-section">
+            <div class="header-content">
+                <h1 class="h4 header-title">
+                    <div class="icon-wrapper">
+                        <i class="fa-solid fa-database"></i>
+                    </div>
+                    <span>Database Tables Overview</span>
+                </h1>
+                <p class="header-description">
+                    View and manage your uploaded database tables. Use the search functionality to quickly find specific tables,
+                    or browse through the complete collection below. Each table displays its full structure and content.
+                </p>
+            </div>
+        </div>
+
+        <!-- Main content wrapper -->
+        <div class="d-flex gap-4">
+            <!-- Left side: Search and Tables -->
+            <div class="content-area flex-grow-1">
+                <div class="search-container mb-4">
+                    <i class="fa-solid fa-search search-icon"></i>
+                    <input type="text" id="tableSearch" class="search-input" placeholder="Search tables..." onkeyup="searchTables()">
+                </div>
+
+                {% if tables_data %}
+                    {% for table in tables_data %}
+                        <h2>Table: {{ table.table_name }}</h2>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover table-bordered">
+                                <thead>
+                                    <tr>
+                                        {% for column in table.columns %}
+                                            <th>{{ column }}</th>
+                                        {% endfor %}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for row in table.rows %}
+                                        <tr>
+                                            {% for value in row %}
+                                                <td>{{ value }}</td>
+                                            {% endfor %}
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No tables available.</p>
+                {% endif %}
+            </div>
+
+            <!-- Right side: Action Cards -->
+            <div class="action-cards-sidebar" style="min-width: 300px; max-width: 320px;">
+                <div class="d-flex flex-column gap-3">
+                    <!-- Uploaded Tables Card -->
+                    <div class="action-card compact">
+                        <div class="card-content">
+                            <h1 class="h4 compact-heading">
+                                <i class="fa-solid fa-table"></i>
+                                <span>Uploaded Tables</span>
+                            </h1>
+                            <p class="compact-text">View and manage system tables</p>
+                        </div>
+                    </div>
+
+                    <!-- Assign Officials Card -->
+                    <div class="action-card compact">
+                        <div class="card-content">
+                            <h1 class="h4 compact-heading">
+                                <i class="fas fa-user-check"></i>
+                                <span>Assign Officials</span>
+                            </h1>
+                            <p class="compact-text">Manage table assignments</p>
+                            <a href="{% url 'assign_official' %}" class="btn btn-primary btn-sm mt-2">
+                                Assign Now
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Personnel Management Card -->
+                    <div class="action-card compact">
+                        <div class="card-content">
+                            <h1 class="h4 compact-heading">
+                                <i class="fas fa-users"></i>
+                                <span>Personnel</span>
+                            </h1>
+                            <p class="compact-text">Manage personnel database</p>
+                            <div class="d-flex gap-2 mt-2">
+                                <a href="{% url 'assign_gender' %}" class="btn btn-primary btn-sm flex-grow-1">
+                                    Assign
+                                </a>
+                                <a href="{% url 'admin_personnel_list' %}" class="btn btn-outline-primary btn-sm flex-grow-1">
+                                    View
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function searchTables() {
+        let input = document.getElementById("tableSearch");
+        let filter = input.value.toLowerCase();
+        let tables = document.getElementsByClassName("table-responsive");
+        let headers = document.getElementsByTagName("h2");
+
+        for (let i = 0; i < tables.length; i++) {
+            let table = tables[i];
+            let header = headers[i];
+            let rows = table.getElementsByTagName("tr");
+            let visible = false;
+
+            // Search in table name
+            if (header.textContent.toLowerCase().includes(filter)) {
+                visible = true;
+            }
+
+            // Search in table content
+            for (let j = 1; j < rows.length; j++) { // Start from 1 to skip header row
+                let cells = rows[j].getElementsByTagName("td");
+                let rowVisible = false;
+                
+                for (let cell of cells) {
+                    if (cell.textContent.toLowerCase().includes(filter)) {
+                        rowVisible = true;
+                        visible = true;
+                        break;
+                    }
+                }
+                
+                // Show/hide individual rows
+                rows[j].style.display = rowVisible ? "" : "none";
+            }
+
+            // Show table and header if any content matches
+            table.style.display = visible ? "" : "none";
+            header.style.display = visible ? "" : "none";
+        }
+    }
+    </script>
+{% endblock %} 

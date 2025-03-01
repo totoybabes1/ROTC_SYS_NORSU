@@ -1,0 +1,192 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+
+{% block title %}Flight Groups{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/FLIGHT.css' %}"/>
+
+    <div class="background-container">
+        <div class="container mt-3">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h1 class="h4 mb-0"><i class="fa-solid fa-people-group me-2"></i>Flight Groups</h1>
+            </div>
+
+            <div class="total-groups-card mb-3">
+                <div class="total-groups-content">
+                    <span id="totalGroups">Loading...</span>
+                    <span>Total Groups</span>
+                </div>
+            </div>
+
+            <div class="search-container">
+                <div class="row mb-3 align-items-center">
+                    <div class="col-md-6">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                            <input type="text" id="searchInput" class="form-control" placeholder="Search by Group Name or Description..."/>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text"><i class="fas fa-sort"></i></span>
+                            <select id="sortSelect" class="form-select">
+                                <option value="name_asc">Sort by Name (A-Z)</option>
+                                <option value="name_desc">Sort by Name (Z-A)</option>
+                                <option value="description_asc">Sort by Description (A-Z)</option>
+                                <option value="description_desc">Sort by Description (Z-A)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-md-end text-center mt-2 mt-md-0">
+                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addFlightGroupModal">
+                            <i class="fas fa-plus"></i> Add New
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card p-2">
+                {% if flight_groups %}
+                    <table class="table table-sm table-hover" id="flightGroupsTable">
+                        <thead>
+                            <tr>
+                                <th>Group Name</th>
+                                <th>Description</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for group in flight_groups %}
+                                <tr>
+                                    <td><i class="fas fa-tag"></i> {{ group.name }}</td>
+                                    <td><i class="fas fa-align-left"></i> {{ group.description }}</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editFlightGroupModal{{ group.id }}">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </button>
+                                        <a href="{% url 'delete_flight_group' group.id %}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure?');">
+                                            <i class="fas fa-trash"></i> Delete
+                                        </a>
+                                    </td>
+                                </tr>
+
+                                <!-- Edit Flight Group Modal -->
+                                <div class="modal fade" id="editFlightGroupModal{{ group.id }}" tabindex="-1" aria-labelledby="editFlightGroupModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-sm">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title h6"><i class="fas fa-edit"></i> Edit Flight Group</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form method="POST" action="{% url 'edit_flight_group' group.id %}">
+                                                    {% csrf_token %}
+                                                    <div class="mb-2">
+                                                        <label class="form-label"><i class="fas fa-tag"></i> Group Name</label>
+                                                        <input type="text" name="name" class="form-control form-control-sm" value="{{ group.name }}" required/>
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label class="form-label"><i class="fas fa-align-left"></i> Description</label>
+                                                        <textarea name="description" class="form-control form-control-sm" required>{{ group.description }}</textarea>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                        <button type="submit" class="btn btn-sm btn-primary">Update</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p class="text-muted text-center small"><i class="fas fa-exclamation-circle"></i> No flight groups available.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Flight Group Modal -->
+    <div class="modal fade" id="addFlightGroupModal" tabindex="-1" aria-labelledby="addFlightGroupModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title h6"><i class="fas fa-plus"></i> Add New Flight Group</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="mb-2">
+                            <label class="form-label"><i class="fas fa-tag"></i> Group Name</label>
+                            <input type="text" name="name" class="form-control form-control-sm" required/>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label"><i class="fas fa-align-left"></i> Description</label>
+                            <textarea name="description" class="form-control form-control-sm" required></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-sm btn-primary">Add Flight Group</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const searchInput = document.getElementById("searchInput");
+            const sortSelect = document.getElementById("sortSelect");
+            const table = document.getElementById("flightGroupsTable");
+            const tbody = table.getElementsByTagName("tbody")[0];
+            const rows = Array.from(tbody.getElementsByTagName("tr"));
+
+            searchInput.addEventListener("input", function () {
+                const searchTerm = searchInput.value.toLowerCase();
+                rows.forEach((row) => {
+                    const name = row.cells[0].textContent.toLowerCase();
+                    const description = row.cells[1].textContent.toLowerCase();
+                    if (name.includes(searchTerm) || description.includes(searchTerm)) {
+                        row.style.display = "";
+                    } else {
+                        row.style.display = "none";
+                    }
+                });
+            });
+
+            sortSelect.addEventListener("change", function () {
+                const sortValue = sortSelect.value;
+                rows.sort((a, b) => {
+                    const aName = a.cells[0].textContent.toLowerCase();
+                    const bName = b.cells[0].textContent.toLowerCase();
+                    const aDescription = a.cells[1].textContent.toLowerCase();
+                    const bDescription = b.cells[1].textContent.toLowerCase();
+
+                    if (sortValue === "name_asc") return aName.localeCompare(bName);
+                    else if (sortValue === "name_desc") return bName.localeCompare(aName);
+                    else if (sortValue === "description_asc") return aDescription.localeCompare(bDescription);
+                    else if (sortValue === "description_desc") return bDescription.localeCompare(aDescription);
+                });
+
+                tbody.innerHTML = "";
+                rows.forEach((row) => tbody.appendChild(row));
+            });
+
+            function updateTotalGroups() {
+                const visibleRows = Array.from(tbody.getElementsByTagName("tr")).filter((row) => row.style.display !== "none");
+                document.getElementById("totalGroups").textContent = visibleRows.length;
+            }
+
+            searchInput.addEventListener("input", updateTotalGroups);
+            sortSelect.addEventListener("change", updateTotalGroups);
+            updateTotalGroups();
+        });
+    </script>
+{% endblock %}

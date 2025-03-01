@@ -1,0 +1,705 @@
+.header-section {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border-left: 5px solid #4361ee;
+}
+
+.header-content {
+    position: relative;
+}
+
+.header-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: #2d3748;
+}
+
+.icon-wrapper {
+    background: linear-gradient(45deg, #4361ee, #3f37c9);
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-wrapper i {
+    font-size: 1.5rem;
+    color: white;
+}
+
+.header-description {
+    color: #718096;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 800px;
+    position: relative;
+    padding-left: 1rem;
+    border-left: 3px solid #e2e8f0;
+}
+
+@media (max-width: 768px) {
+    .header-section {
+        padding: 1.5rem;
+    }
+    
+    .header-title {
+        font-size: 1.5rem;
+    }
+    
+    .header-description {
+        font-size: 1rem;
+    }
+}
+/* Table styles */
+.table-responsive {
+    margin-bottom: 30px;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+    background-color: #e9ecef;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.table-hover tbody tr:hover {
+    color: #212529;
+    background-color: rgba(0, 0, 0, 0.075);
+}
+
+.table-bordered {
+    border: 1px solid #dee2e6;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #dee2e6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+}
+
+/* Additional styles for a more dynamic look */
+.card {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.card-header {
+    background-color: #007bff;
+    color: #fff;
+    border-bottom: none;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.btn {
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.btn-outline-primary {
+    color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-outline-primary:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.alert {
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+.alert-info {
+    background-color: #e9f7fd;
+    border-color: #b8e2f2;
+    color: #31708f;
+}
+
+.modal-content {
+    border-radius: 0.5rem;
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+.profile-img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.profile-preview {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
+
+.profile-preview.loaded {
+    opacity: 1;
+}
+
+/* Additional styles for search and sort */
+.search-wrapper {
+    margin-bottom: 20px;
+}
+
+.input-group-text {
+    background-color: #f8f9fa;
+    border-right: none;
+}
+
+#searchInput {
+    border-left: none;
+}
+
+#searchInput::placeholder {
+    color: #6c757d;
+    font-size: 0.875rem;
+}
+
+.sort-box {
+    margin-bottom: 20px;
+}
+
+.total-box {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #007bff;
+}
+
+/* Animation for highlighting */
+@keyframes highlightFade {
+    from { background-color: #fff3cd; }
+    to { background-color: transparent; }
+}
+
+.highlight {
+    background-color: #fff3cd;
+    padding: 0.1em 0.2em;
+    border-radius: 3px;
+    font-weight: bold;
+    animation: highlightFade 2s ease-in-out;
+}
+
+/* ========================================
+   Base Container Styles
+   ======================================== */
+.container {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 35px 30px;
+}
+
+/* ========================================
+   Custom Heading Styles
+   ======================================== */
+h1, h2 {
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-top: 30px;
+}
+
+/* ========================================
+   Table Core Styles
+   ======================================== */
+.table {
+    width: 100%;
+    margin: 10px 0;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+}
+
+.table thead tr {
+    background: linear-gradient(135deg, #343a40, #000000bb);
+    color: #fff;
+    border-radius: 8px;
+}
+
+.table thead th {
+    padding: 12px;
+    font-size: 14px;
+    text-align: center;
+    border: none;
+}
+
+.table tbody tr {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.table td {
+    padding: 12px;
+    font-size: 13px;
+    text-align: center;
+    border: none;
+    vertical-align: middle;
+}
+
+.table tbody tr:hover {
+    transform: scale(1.02);
+    background-color: #f1f1f1;
+}
+
+/* ========================================
+   Responsive Styles
+   ======================================== */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+}
+
+/* ========================================
+   Search Component Styles
+   ======================================== */
+.search-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+}
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #ccc;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 20px 10px 40px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* ========================================
+   Action Card Styles
+   ======================================== */
+.action-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    max-width: 400px;
+}
+
+.action-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-content h3 {
+    font-size: 1.2rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.card-content p {
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.card-content .btn {
+    width: 100%;
+    padding: 10px;
+    font-weight: 500;
+}
+
+/* ========================================
+   Table Styles
+   ======================================== */
+.table {
+    background-color: white;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table thead th {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #495057;
+    padding: 12px 15px;
+    white-space: nowrap;
+}
+
+.table tbody td {
+    padding: 12px 15px;
+    vertical-align: middle;
+    border-color: #dee2e6;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 123, 255, 0.05);
+    transition: background-color 0.2s ease;
+}
+
+.table-responsive {
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* ========================================
+   Typography Styles
+   ======================================== */
+h2 {
+    color: #2c3e50;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+/* Modern White Theme */
+body {
+    background-color: #ffffff;
+}
+
+/* Action Cards */
+.action-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.action-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.card-content h1.h4 {
+    color: #1a1a1a;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    border: none;
+    background: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.card-content h1.h4 i {
+    background: #f0f7ff;
+    padding: 10px;
+    border-radius: 12px;
+    font-size: 1.25rem;
+    color: #0066ff;
+}
+
+.card-content p {
+    color: #666666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Search Bar */
+.search-container {
+    margin: 24px 0;
+    max-width: 500px;
+}
+
+.search-input {
+    background: #ffffff;
+    border: 1px solid #e6e6e6;
+    padding: 12px 12px 12px 45px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: all 0.2s ease;
+}
+
+.search-input:focus {
+    border-color: #0066ff;
+    box-shadow: 0 2px 12px rgba(0, 102, 255, 0.1);
+}
+
+.search-icon {
+    color: #0066ff;
+    font-size: 1rem;
+    left: 15px;
+}
+
+/* Table Styles */
+.table-responsive {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    padding: 1px;
+    margin-bottom: 32px;
+    border: 1px solid #f0f0f0;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    background: #f8fafc;
+    color: #1a1a1a;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 16px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.table tbody td {
+    padding: 16px;
+    color: #4a4a4a;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+}
+
+.table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+/* Table Header */
+h2 {
+    color: #1a1a1a;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 32px 0 16px 0;
+}
+
+/* Button Styles */
+.btn-primary {
+    background: #0066ff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: #0052cc;
+    transform: translateY(-1px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .action-card {
+        padding: 20px;
+    }
+    
+    .table thead th,
+    .table tbody td {
+        padding: 12px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Content Layout */
+.content-area {
+    max-width: calc(100% - 400px);
+}
+
+.action-cards-sidebar {
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .d-flex.gap-4 {
+        flex-direction: column-reverse;
+    }
+    
+    .content-area {
+        max-width: 100%;
+    }
+    
+    .action-cards-sidebar {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+/* Action Cards - Compact Design */
+.action-card.compact {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: all 0.2s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.action-card.compact:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.compact-heading {
+    font-size: 1rem !important;
+    margin-bottom: 8px !important;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.compact-heading i {
+    font-size: 1rem !important;
+    padding: 8px !important;
+    background: #f0f7ff;
+    border-radius: 8px;
+    color: #0066ff;
+}
+
+.compact-text {
+    font-size: 0.85rem !important;
+    color: #666;
+    margin-bottom: 0;
+    line-height: 1.4;
+}
+
+/* Compact Button Styles */
+.action-card.compact .btn {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+}
+
+.action-card.compact .btn-outline-primary {
+    background: transparent;
+    border: 1px solid #0066ff;
+    color: #0066ff;
+}
+
+.action-card.compact .btn-outline-primary:hover {
+    background: #0066ff;
+    color: white;
+}
+
+/* Updated Sidebar Styles */
+.action-cards-sidebar {
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+    padding: 0 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .action-cards-sidebar {
+        position: static;
+        margin-bottom: 24px;
+    }
+    
+    .action-card.compact {
+        max-width: 100%;
+    }
+} 
