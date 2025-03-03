@@ -5,17 +5,19 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link rel="stylesheet" href="{% static 'css/admin_login.css' %}">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
 
 <div class="login-container d-flex justify-content-center align-items-center">
-    <div class="card">
+    <div class="card" data-aos="fade-right">
         <div class="card-body">
-            <div class="logo-container text-center">
+            <div class="logo-container text-center" data-aos="fade-right" data-aos-delay="100">
                 <!-- Add your logo image here -->
                 <img src="{% static 'img/logo.png' %}" alt="Logo">
             </div>
-            <h2 class="text-center">Welcome Back</h2>
+            <h2 class="text-center" data-aos="fade-right" data-aos-delay="150">Welcome Back</h2>
             
-            <form method="post">
+            <form method="post" data-aos="fade-right" data-aos-delay="200">
                 {% csrf_token %}
                 <div class="input-group">
                     <input type="text" id="username" name="username" placeholder="Username" required>
@@ -33,7 +35,7 @@
             </form>
 
             {% if messages %}
-                <div class="mt-3">
+                <div class="mt-3" data-aos="fade-right" data-aos-delay="250">
                     {% for message in messages %}
                         <div class="alert alert-danger">{{ message }}</div>
                     {% endfor %}
@@ -50,6 +52,15 @@
         setTimeout(() => {
             this.submit();
         }, 500);
+    });
+    
+    // Initialize AOS
+    document.addEventListener('DOMContentLoaded', function() {
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
     });
 </script>
 {% endblock %}
